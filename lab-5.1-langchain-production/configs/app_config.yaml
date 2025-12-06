@@ -1,0 +1,24 @@
+app:
+  name: "langchain-investigator"
+  version: "1.0.0"
+
+kubernetes:
+  kubectl_readonly_path: "/usr/bin/kubectl"
+
+database:
+  user: "aiagent"
+  password: "aiagentpass"
+  host: "postgres"
+  port: 5432
+  dbname: "auditdb"
+
+redis:
+  host: "redis"
+  port: 6379
+
+metrics:
+  enabled: true
+  endpoint: "/metrics"
+
+openai:
+  model: "gpt-4o-mini"

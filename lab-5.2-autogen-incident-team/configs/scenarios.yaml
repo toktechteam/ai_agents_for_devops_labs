@@ -1,0 +1,38 @@
+scenarios:
+
+  high_cpu:
+    description: "Pod CPU usage exceeded threshold"
+    logs: |
+      CPU: 92%
+      Requests: 2500/sec
+      Pod restarts: 0
+    code_snippet: |
+      while True:
+         do_heavy_workload()
+
+  memory_leak:
+    description: "Memory leak detected in service"
+    logs: |
+      Memory: climbing steadily
+      OOMKill count: 3
+    code_snippet: |
+      def leak():
+         a = []
+         while True:
+            a.append("leak")
+
+  crashloop:
+    description: "Container restarting repeatedly"
+    logs: |
+      Exit code 139
+      Segfault in auth_handler
+    code_snippet: |
+      def handler():
+         raise Exception("crash")
+
+  cascading_failure:
+    description: "Service A failing due to Service B"
+    logs: |
+      timeout connecting to upstream
+    code_snippet: |
+      requests.get("http://service-b:8080")

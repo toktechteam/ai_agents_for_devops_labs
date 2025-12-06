@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+
+  api:
+    build: .
+    container_name: langchain-api
+    ports:
+      - "8000:8000"
+    environment:
+      OPENAI_API_KEY: "replace-with-your-api-key"
+      POSTGRES_USER: "aiagent"
+      POSTGRES_PASSWORD: "aiagentpass"
+      POSTGRES_DB: "auditdb"
+      POSTGRES_HOST: "postgres"
+      REDIS_HOST: "redis"
+    depends_on:
+      - redis
+      - postgres
+
+  redis:
+    image: redis:7.2
+    container_name: redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: aiagent
+      POSTGRES_PASSWORD: aiagentpass
+      POSTGRES_DB: auditdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

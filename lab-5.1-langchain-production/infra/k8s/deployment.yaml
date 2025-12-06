@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: langchain-api
+  namespace: ai-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: langchain-api
+  template:
+    metadata:
+      labels:
+        app: langchain-api
+    spec:
+      containers:
+        - name: langchain-api
+          image: langchain-api:latest
+          imagePullPolicy: Never
+          envFrom:
+            - configMapRef:
+                name: app-config
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8000
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          volumeMounts:
+            - name: kubeconfig-readonly
+              mountPath: /root/.kube/
+            - name: kubectl-bin
+              mountPath: /usr/bin/kubectl
+              readOnly: true
+
+      volumes:
+        - name: kubeconfig-readonly
+          hostPath:
+            path: ~/.kube
+            type: Directory
+
+        - name: kubectl-bin
+          hostPath:
+            path: /usr/bin/kubectl
+            type: File

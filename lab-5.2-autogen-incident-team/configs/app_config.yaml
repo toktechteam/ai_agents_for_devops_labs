@@ -1,0 +1,21 @@
+app:
+  name: "autogen-incident-response"
+  version: "1.0.0"
+
+database:
+  host: "postgres"
+  port: 5432
+  user: "aiagent"
+  password: "aiagentpass"
+  dbname: "auditdb"
+
+redis:
+  host: "redis"
+  port: 6379
+
+sandbox:
+  image: "autogen-sandbox"
+  timeout_seconds: 10
+
+agents:
+  model: "gpt-4o-mini"

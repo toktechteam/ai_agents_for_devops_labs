@@ -1,0 +1,12 @@
+rate_limits:
+  default:
+    max_calls_per_minute: 60
+  tools:
+    k8s.list_pods:
+      max_calls_per_minute: 30
+    prom.query_simple:
+      max_calls_per_minute: 20
+    logs.search:
+      max_calls_per_minute: 15
+    runbook.execute:
+      max_calls_per_minute: 5

@@ -1,0 +1,93 @@
+tools:
+  - name: "k8s.list_pods"
+    description: "List pods in a given namespace (read-only)."
+    category: "kubernetes"
+    rbac_role: "reader"
+    input_schema:
+      type: "object"
+      properties:
+        namespace:
+          type: "string"
+          description: "Kubernetes namespace."
+      required: ["namespace"]
+
+  - name: "prom.query_simple"
+    description: "Run a simple Prometheus query (with caching in Redis)."
+    category: "prometheus"
+    rbac_role: "reader"
+    input_schema:
+      type: "object"
+      properties:
+        query:
+          type: "string"
+          description: "PromQL query string."
+      required: ["query"]
+
+  - name: "logs.search"
+    description: "Search log file for a term with a max line limit."
+    category: "logs"
+    rbac_role: "reader"
+    input_schema:
+      type: "object"
+      properties:
+        term:
+          type: "string"
+          description: "Search term."
+        max_lines:
+          type: "integer"
+          description: "Maximum number of lines to return."
+      required: ["term"]
+
+  - name: "runbook.preview"
+    description: "Preview the steps of a runbook without executing it."
+    category: "runbook"
+    rbac_role: "operator"
+    input_schema:
+      type: "object"
+      properties:
+        runbook_id:
+          type: "string"
+          description: "Runbook identifier."
+      required: ["runbook_id"]
+
+  - name: "runbook.execute"
+    description: "Execute a runbook steps logically (no real kubectl). Requires approval."
+    category: "runbook"
+    rbac_role: "operator"
+    input_schema:
+      type: "object"
+      properties:
+        runbook_id:
+          type: "string"
+          description: "Runbook identifier."
+        approved_by:
+          type: "string"
+          description: "Human approver."
+      required: ["runbook_id", "approved_by"]
+
+  - name: "ctx.get"
+    description: "Get a value from MCP context store."
+    category: "context"
+    rbac_role: "reader"
+    input_schema:
+      type: "object"
+      properties:
+        key:
+          type: "string"
+          description: "Context key."
+      required: ["key"]
+
+  - name: "ctx.set"
+    description: "Set a value in MCP context store."
+    category: "context"
+    rbac_role: "operator"
+    input_schema:
+      type: "object"
+      properties:
+        key:
+          type: "string"
+          description: "Context key."
+        value:
+          type: "string"
+          description: "Context value."
+      required: ["key", "value"]

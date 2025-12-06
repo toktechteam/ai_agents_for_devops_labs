@@ -1,0 +1,35 @@
+roles:
+
+  incident_commander:
+    allow:
+      - orchestrate_workflow
+      - escalate
+      - approve_actions
+    deny:
+      - execute_code
+      - modify_system
+
+  sre_investigator:
+    allow:
+      - analyze_alerts
+      - read_logs
+      - request_code_review
+    deny:
+      - execute_code
+      - deploy_changes
+
+  code_analysis_agent:
+    allow:
+      - static_analysis
+      - sandbox_execution
+    deny:
+      - deploy_changes
+      - approve_remediation
+
+  remediation_agent:
+    allow:
+      - propose_fix
+      - generate_patch
+    deny:
+      - execute_unreviewed_code
+      - approve_own_fix

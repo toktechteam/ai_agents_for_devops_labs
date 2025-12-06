@@ -1,0 +1,18 @@
+FROM python:3.10-slim
+
+WORKDIR /sandbox
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    bash \
+    python3 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Sandbox isolation rules
+RUN useradd -m sandboxuser
+USER sandboxuser
+
+# Explicitly disable networking inside sandbox
+RUN printf "networking disabled\n" > /tmp/NET_DISABLED
+
+CMD ["bash"]

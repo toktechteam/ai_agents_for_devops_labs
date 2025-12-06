@@ -1,0 +1,24 @@
+app:
+  name: "mcp-lab-server"
+  version: "1.0.0"
+
+redis:
+  host: "redis-mcp"
+  port: 6379
+  db: 0
+
+database:
+  host: "postgres-mcp"
+  port: 5432
+  user: "aiagent"
+  password: "aiagentpass"
+  dbname: "mcpaudit"
+
+kubernetes:
+  namespace_default: "default"
+
+prometheus:
+  base_url: "http://prometheus-mcp.mcp-lab.svc.cluster.local:9090"
+
+logging:
+  level: "INFO"
