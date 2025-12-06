@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: otel-config
+  namespace: ai-ml-lab-2-2
+data:
+  otel-collector-config.yaml: |
+    receivers:
+      otlp:
+        protocols:
+          http:
+
+    processors:
+      batch:
+
+    exporters:
+      logging:
+        loglevel: debug
+
+    service:
+      pipelines:
+        metrics:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [logging]
+        traces:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [logging]

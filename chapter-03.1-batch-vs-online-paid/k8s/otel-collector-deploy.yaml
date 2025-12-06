@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otel-collector-paid
+  namespace: ai-ml-lab-3-1-paid
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otel-collector-paid
+  template:
+    metadata:
+      labels:
+        app: otel-collector-paid
+    spec:
+      containers:
+        - name: collector
+          image: otel/opentelemetry-collector-contrib:0.97.0
+          args: ["--config=/etc/otel/collector.yaml"]
+          volumeMounts:
+            - name: config
+              mountPath: /etc/otel
+      volumes:
+        - name: config
+          configMap:
+            name: otel-config-paid
+            items:
+              - key: collector.yaml
+                path: collector.yaml

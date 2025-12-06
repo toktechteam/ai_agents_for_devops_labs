@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: batch-inference-paid-cron
+  namespace: ai-ml-lab-3-1-paid
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: batch-inference-paid
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: batch-inference
+              image: ai-lab-3-1-paid:v1
+              env:
+                - name: CPU_BURN_MS
+                  value: "20"
+                - name: COST_PER_1K_PRED
+                  value: "0.002"

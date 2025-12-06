@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paid-agent-lab-4-1
+  namespace: ai-ml-lab-4-1-paid
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paid-agent-lab-4-1
+  template:
+    metadata:
+      labels:
+        app: paid-agent-lab-4-1
+    spec:
+      containers:
+        - name: paid-agent-lab-4-1
+          image: paid-agent-lab-4-1:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: AGENT_ENV
+              value: "production"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
