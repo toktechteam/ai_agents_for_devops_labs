@@ -1,0 +1,309 @@
+# AI Agents for DevOps Labs - .gitignore
+
+# ==============================================================================
+# macOS
+# ==============================================================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# ==============================================================================
+# Python
+# ==============================================================================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+*.venv
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.pytest_cache/
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.env.local
+.env.*.local
+*.env
+
+# ==============================================================================
+# Docker
+# ==============================================================================
+# Docker volumes
+docker-volumes/
+volumes/
+
+# Docker logs
+docker-compose.override.yml
+
+# ==============================================================================
+# Kubernetes
+# ==============================================================================
+# kubeconfig files (if accidentally placed in repo)
+kubeconfig
+*.kubeconfig
+kubeconfig-*
+
+# Kubernetes secrets (should never be committed)
+*secret*.yaml
+*secret*.yml
+secrets/
+
+# Helm
+.helm/
+
+# Kind cluster artifacts
+kind-cluster.yaml.bak
+*.kind
+
+# ==============================================================================
+# IDE / Editor
+# ==============================================================================
+# VSCode
+.vscode/
+*.code-workspace
+.history/
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ==============================================================================
+# Node.js (if any labs use Node)
+# ==============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ==============================================================================
+# Logs and databases
+# ==============================================================================
+*.log
+logs/
+log/
+*.sqlite
+*.db
+
+# ==============================================================================
+# Temporary files
+# ==============================================================================
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.cache
+
+# ==============================================================================
+# AI/ML Specific
+# ==============================================================================
+# Model files (usually too large for git)
+*.h5
+*.pkl
+*.pickle
+*.pt
+*.pth
+*.onnx
+*.pb
+*.tflite
+models/
+checkpoints/
+
+# Vector database data
+qdrant_storage/
+chromadb/
+*.index
+*.faiss
+
+# Training data (if not part of repo)
+data/raw/
+data/processed/
+data/external/
+datasets/
+
+# Embeddings cache
+.embeddings_cache/
+embeddings/
+
+# ==============================================================================
+# Cloud Provider Credentials (CRITICAL - Never commit!)
+# ==============================================================================
+# AWS
+.aws/
+*.pem
+
+# GCP
+*.json
+gcloud-key.json
+service-account*.json
+
+# Azure
+*.publishsettings
+
+# ==============================================================================
+# API Keys and Secrets (CRITICAL - Never commit!)
+# ==============================================================================
+# OpenAI, Anthropic, etc.
+.openai
+.anthropic
+api_keys.txt
+*apikey*
+*api_key*
+*API_KEY*
+
+# ==============================================================================
+# Lab-Specific
+# ==============================================================================
+# Lab 3.1 - Vector similarity search
+lab-03.1-vector-similarity-search/qdrant_storage/
+lab-03.1-vector-similarity-search/.qdrant/
+
+# Lab 5.1 - LangChain production
+lab-5.1-langchain-production/.langchain/
+lab-5.1-langchain-production/langchain.db
+
+# Lab 5.2 - AutoGen
+lab-5.2-autogen-incident-team/.autogen/
+
+# Any lab-generated outputs
+*/output/
+*/outputs/
+*/results/
+*-output/
+
+# ==============================================================================
+# Testing
+# ==============================================================================
+.pytest_cache/
+.tox/
+test-results/
+test-reports/
+
+# ==============================================================================
+# Documentation build artifacts
+# ==============================================================================
+docs/_build/
+site/
+_site/
+
+# ==============================================================================
+# Monitoring and Metrics
+# ==============================================================================
+prometheus_data/
+grafana_data/
+
+# ==============================================================================
+# Misc
+# ==============================================================================
+# Backup files
+*.backup
+*.old
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Delete me files (like in your repo)
+deleteme*
+TODO.md
+NOTES.md
+scratch/
+
+# OS generated files
+Thumbs.db
+Desktop.ini
